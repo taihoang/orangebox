@@ -41,6 +41,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private Vector3 lastPosition = new Vector3(0,0,0);
+        
 
         // Use this for initialization
         private void Start()
@@ -81,9 +83,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            if (lastPosition != gameObject.transform.position && !m_Jumping)
+            {
+                if (!m_AudioSource.isPlaying)
+                {
+                    m_AudioSource.clip = m_FootstepSounds[0];
+                    m_AudioSource.PlayOneShot(m_AudioSource.clip);
+                }
+            } else
+            {
+                m_AudioSource.Stop();
+            }
+            lastPosition = gameObject.transform.position;
+
+           /* if (m_IsWalking)
+            {
+                m_AudioSource.clip = m_FootstepSounds[0];
+                m_AudioSource.PlayOneShot(m_AudioSource.clip);
+            }*/
         }
-
-
+        
         private void PlayLandingSound()
         {
             m_AudioSource.clip = m_LandSound;
@@ -136,6 +156,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayJumpSound()
         {
+            m_AudioSource.Stop();
             m_AudioSource.clip = m_JumpSound;
             m_AudioSource.Play();
         }
@@ -168,12 +189,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             // pick & play a random footstep sound from the array,
             // excluding sound at index 0
-            int n = Random.Range(1, m_FootstepSounds.Length);
+          /*  int n = Random.Range(1, m_FootstepSounds.Length);
             m_AudioSource.clip = m_FootstepSounds[n];
             m_AudioSource.PlayOneShot(m_AudioSource.clip);
             // move picked sound to index 0 so it's not picked next time
             m_FootstepSounds[n] = m_FootstepSounds[0];
-            m_FootstepSounds[0] = m_AudioSource.clip;
+            m_FootstepSounds[0] = m_AudioSource.clip;*/
         }
 
 
