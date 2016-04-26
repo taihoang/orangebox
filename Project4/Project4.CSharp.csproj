@@ -58,6 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -70,6 +76,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\PainterlyNature\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Script\FirstPersonController.cs" />
+    <Compile Include="Assets\Script\Shooter.cs" />
+    <Compile Include="Assets\Script\Swim.cs" />
+    <Compile Include="Assets\Script\bulletDestroy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AssetStore\CactusPack\Readme.txt" />
