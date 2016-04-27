@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -172,6 +166,7 @@
     <None Include="Assets\AssetStore\CactusPack\Shaders\Basic_Rimlight.shader" />
     <None Include="Assets\AssetStore\CactusPack\Shaders\VertexBlend.shader" />
     <None Include="Assets\AssetStore\Horse\SoftAlpha.shader" />
+    <None Include="Assets\Day Night Cycle\ReadMe.txt" />
     <None Include="Assets\PainterlyNature\Standard Assets\Skyboxes\_skybox info.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
