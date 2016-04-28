@@ -168,6 +168,8 @@
     <None Include="Assets\AssetStore\Horse\SoftAlpha.shader" />
     <None Include="Assets\Day Night Cycle\ReadMe.txt" />
     <None Include="Assets\PainterlyNature\Standard Assets\Skyboxes\_skybox info.txt" />
+    <None Include="Assets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
+    <None Include="Assets\PyroParticles\Readme.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
