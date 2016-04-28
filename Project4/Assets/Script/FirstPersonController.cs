@@ -58,6 +58,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            
         }
 
 
@@ -65,6 +66,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Update()
         {
             RotateView();
+          
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
@@ -99,12 +101,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
             lastPosition = gameObject.transform.position;
 
             //Physics.gravity = new Vector3(0, 0, 0);
-           /* if (m_IsWalking)
+            /* if (m_IsWalking)
+             {
+                 m_AudioSource.clip = m_FootstepSounds[0];
+                 m_AudioSource.PlayOneShot(m_AudioSource.clip);
+             }*/
+
+            if (m_Jump && inWater)
             {
-                m_AudioSource.clip = m_FootstepSounds[0];
-                m_AudioSource.PlayOneShot(m_AudioSource.clip);
-            }*/
-        }
+                m_MoveDir.y = m_JumpSpeed;
+               // PlayJumpSound();
+                m_Jump = false;
+                m_Jumping = true;
+            }
+
+            
+
+                //   m_MoveDir.y = -.0001f;
+
+
+                //            m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+            }
 
         private void changeGravity(bool change)
         {
@@ -112,16 +129,31 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (change == true)
             {
                 //print("WTF");
-                m_GravityMultiplier = .1f;
-                m_StickToGroundForce = 1f;
-                m_JumpSpeed = 30;
+                //m_GravityMultiplier = .1f;
+                //m_StickToGroundForce = 10f;
+                //m_JumpSpeed = 30;
+               // this.GetComponent<Rigidbody>().useGravity = true;
+                //Physics.gravity = new Vector3(0, -1f, 0) ;
                 inWater = true;
             } else
             {
-                m_GravityMultiplier = 2;
+               // this.GetComponent<Rigidbody>().useGravity = true;
+
+                //m_GravityMultiplier = 2;
                 m_StickToGroundForce = 10;
-                m_JumpSpeed = 10;
+                //m_JumpSpeed = 10;
                 inWater = false;
+            }
+        }
+
+        private void setFly(bool fly)
+        {
+            if(fly)
+            {
+
+            } else
+            {
+
             }
         }
         
@@ -150,13 +182,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.z = desiredMove.z*speed;
 
 
-            if (m_CharacterController.isGrounded || inWater == true)
+            if (m_CharacterController.isGrounded)
             {
                 m_MoveDir.y = -m_StickToGroundForce;
 
                 if (m_Jump)
                 {
                     m_MoveDir.y = m_JumpSpeed;
+                    
                     PlayJumpSound();
                     m_Jump = false;
                     m_Jumping = true;

@@ -72,16 +72,17 @@ namespace DigitalRuby.PyroParticles
                 float delay = UnityEngine.Random.Range(0.0f, 1.0f);
                 yield return new WaitForSeconds(delay);
             }
-
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            Vector3 Source2 = playerObj.transform.position + playerObj.transform.forward*300 + new Vector3(0,400,0);
             // find a random source and destination point within the specified radius
-            Vector3 src = Source + (UnityEngine.Random.insideUnitSphere * SourceRadius);
+            Vector3 src = Source2 + (UnityEngine.Random.insideUnitSphere * SourceRadius);
             GameObject meteor = GameObject.Instantiate(MeteorPrefab);
             float scale = UnityEngine.Random.Range(ScaleRange.Minimum, ScaleRange.Maximum);
             meteor.transform.localScale = new Vector3(scale, scale, scale);
             meteor.transform.position = src;
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+           
             // Vector3 dest = gameObject.transform.position + (UnityEngine.Random.insideUnitSphere * DestinationRadius);
-            Vector3 dest = playerObj.transform.position + (UnityEngine.Random.insideUnitSphere * DestinationRadius);
+            Vector3 dest = playerObj.transform.position + (UnityEngine.Random.insideUnitSphere * DestinationRadius) + playerObj.transform.forward*5; 
             dest.y = 0.0f;
 
             // get the direction and set speed based on how fast the meteor should arrive at the destination
@@ -115,6 +116,7 @@ namespace DigitalRuby.PyroParticles
             if (EmissionSounds != null && EmissionSounds.Length != 0)
             {
                 AudioSource audio = meteor.GetComponent<AudioSource>();
+                audio.volume = 1.0f;
                 if (audio != null)
                 {
                     int index = UnityEngine.Random.Range(0, EmissionSounds.Length);
