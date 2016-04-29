@@ -58,6 +58,7 @@
      <Compile Include="Assets\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
      <Compile Include="Assets\Script\AutoIntensity.cs" />
      <Compile Include="Assets\Script\FirstPersonController.cs" />
+     <Compile Include="Assets\Script\Fly.cs" />
      <Compile Include="Assets\Script\SetSun.cs" />
      <Compile Include="Assets\Script\Shooter.cs" />
      <Compile Include="Assets\Script\Swim.cs" />
