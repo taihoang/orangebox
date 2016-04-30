@@ -43,7 +43,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
         private Vector3 lastPosition = new Vector3(0,0,0);
         private bool inWater = false;
-        
+        private bool isFlying = false;
+
+        public AudioClip flySound;
+        public AudioClip fallSound;
+
+        private float currentheight;
+        private float previousheight;
+
+
 
         // Use this for initialization
         private void Start()
@@ -87,7 +95,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
-            if (lastPosition != gameObject.transform.position && !m_Jumping)
+            if (lastPosition != gameObject.transform.position && !m_Jumping && m_CharacterController.isGrounded)
             {
                 if (!m_AudioSource.isPlaying)
                 {
@@ -96,7 +104,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             } else
             {
-                m_AudioSource.Stop();
+                if (!isFlying || m_CharacterController.isGrounded)
+                {
+                    m_AudioSource.Stop();
+                }
             }
             lastPosition = gameObject.transform.position;
 
@@ -115,8 +126,54 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jumping = true;
             }
 
-            
+            currentheight = gameObject.transform.position.y;
 
+            if (isFlying)
+            {
+                if (Input.GetKey(KeyCode.E))
+                {
+                    if (!m_AudioSource.isPlaying)
+                    {
+                      //  m_AudioSource.PlayOneShot(flySound);
+                    }
+                    m_GravityMultiplier = .5f;
+                    gameObject.transform.position += new Vector3(0, 1, 0);
+                }
+                else if (Input.GetKey(KeyCode.R))
+                {
+                    if (!m_CharacterController.isGrounded)
+                    {
+                        //    gameObject.transform.position += new Vector3(0, -1f, 0);
+                    }
+                }
+
+                
+                if(previousheight < currentheight){
+                    //m_AudioSource.Stop();
+                   // if(m_AudioSource.isPlaying())
+                    //{
+
+                    //}
+                    if (!m_AudioSource.isPlaying)
+                    {
+                        if (!m_CharacterController.isGrounded)
+                           m_AudioSource.PlayOneShot(fallSound);
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.E)){
+
+                    m_AudioSource.Stop();
+                    if (!m_AudioSource.isPlaying)
+                    {
+                        m_AudioSource.Stop();
+
+                        m_AudioSource.PlayOneShot(flySound);
+                    }
+                }
+            }
+
+            previousheight = currentheight;
                 //   m_MoveDir.y = -.0001f;
 
 
@@ -150,10 +207,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if(fly)
             {
-
+                isFlying = true;
             } else
             {
-
+                isFlying = false;
             }
         }
         

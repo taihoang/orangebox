@@ -23,6 +23,8 @@ public class Shooter : MonoBehaviour {
             {
                 weapon = 0;
             }
+            var player = GameObject.FindGameObjectWithTag("Player");
+            player.SendMessage("changeAttack");
         }
 
 	    if(Input.GetButtonDown("Fire1") && canThrow)
