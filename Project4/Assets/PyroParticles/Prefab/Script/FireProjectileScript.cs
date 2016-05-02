@@ -86,6 +86,19 @@ namespace DigitalRuby.PyroParticles
                     GameObject.Destroy(p, 0.1f);
                 }
             }
+        
+
+            if (c.gameObject != GameObject.FindGameObjectWithTag("Player") && c.gameObject != GameObject.FindGameObjectWithTag("terrain"))
+            {
+                Destroy(c.gameObject);
+            }
+
+            if (c.gameObject == GameObject.FindGameObjectWithTag("Player"))
+            {
+                //print("WTF2");
+                GameObject.FindGameObjectWithTag("Player").SendMessage("SubtractHealth", 30);
+                //    col.gameObject.SendMessage("SubtractHealth", 30);
+            }
 
             // play collision sound
             if (ProjectileCollisionSound != null)
@@ -103,6 +116,16 @@ namespace DigitalRuby.PyroParticles
                 {
                     CollisionDelegate(this, c.contacts[0].point);
                 }
+            }
+        }
+        void OnCollisionEnter(Collision col)
+        {
+            print(col.gameObject);
+            if(col.gameObject == GameObject.FindGameObjectWithTag("Player"))
+            {
+                //print("WTF2");
+                GameObject.FindGameObjectWithTag("Player").SendMessage("SubtractHealth", 30);
+            //    col.gameObject.SendMessage("SubtractHealth", 30);
             }
         }
     }

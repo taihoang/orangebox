@@ -197,6 +197,11 @@ namespace DigitalRuby.PyroParticles
                 normal = col.contacts[0].normal;
             }
 
+            if (col.gameObject != GameObject.FindGameObjectWithTag("Player") && col.gameObject != GameObject.FindGameObjectWithTag("terrain"))
+            {
+                Destroy(col.gameObject);
+            }
+
             MeteorExplosionParticleSystem.transform.position = pos;
             MeteorExplosionParticleSystem.transform.rotation = Quaternion.LookRotation(normal);
             MeteorExplosionParticleSystem.Emit(UnityEngine.Random.Range(10, 20));
