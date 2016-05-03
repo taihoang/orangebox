@@ -9,24 +9,46 @@ public class PlayerStats : MonoBehaviour {
     public RawImage livesGUI;
     public Texture2D[] livesImage = new Texture2D[3];
     private int lives = 3;
+
+    public RawImage deathScreen;
+    public RawImage splashScreen;
+    public AudioSource hurtSource;
+    public AudioClip hurtSound;
+    public Vector3 spawnPoint;
+    public Vector3 rotation;
     // Use this for initialization
     void Start () {
-	
+        splashScreen.enabled = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            deathScreen.enabled = false;
+            splashScreen.enabled = false;
+        }
+        
+
+    }
 
     void SubtractHealth (int hp)
     {
+        hurtSource.PlayOneShot(hurtSound);
         health -= hp;
         if(health < 0)
         {
             health = 0;
             lives--;
             health = 100;
+
+            if (lives == 0)
+            {
+                deathScreen.enabled = true;
+                lives = 3;
+            }
+            transform.position = spawnPoint;
+            transform.localEulerAngles = rotation;
         }
 
         if(lives == 3)
@@ -40,6 +62,7 @@ public class PlayerStats : MonoBehaviour {
             livesGUI.texture = livesImage[0];
         }
 
+        
         if (health == 100)
         {
             healthGUI.texture = healthImage[10];

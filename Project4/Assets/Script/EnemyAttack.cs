@@ -89,14 +89,15 @@ public class EnemyAttack : MonoBehaviour {
     {
         
         Rigidbody newBullet = Instantiate(bullet, transform.position + transform.forward * 5 + new Vector3(0, 2, 0), transform.rotation) as Rigidbody;
-        newBullet.name = "fireball";
+       // newBullet.name = "fireball";
         Vector3 heading = target.position - (transform.position + transform.forward * 5 + new Vector3(0, 3, 0));
         float distance = heading.magnitude;
         Vector3 shootDirection = heading / distance; //shoot at player
         //shootDirection -= new Vector3(0, 100, 0);
-        newBullet.velocity = shootDirection * throwSpeed;
+      //  newBullet.velocity = shootDirection * throwSpeed;
        
     }
 
+   
     
 }
