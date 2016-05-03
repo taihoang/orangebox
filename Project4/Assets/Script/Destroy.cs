@@ -19,9 +19,19 @@ public class Destroy : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         //    GameObject player
+        //print("WTF");
         if (col.gameObject != GameObject.FindGameObjectWithTag("Player"))
         {
             Destroy(col.gameObject);
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (col.gameObject == GameObject.FindGameObjectWithTag("boss"))
+        {
+
+          //  print("what");
+            player.SendMessage("DisplayWin");
         }
     }
 }

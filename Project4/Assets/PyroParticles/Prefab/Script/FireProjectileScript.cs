@@ -93,6 +93,13 @@ namespace DigitalRuby.PyroParticles
                 Destroy(c.gameObject);
             }
 
+            if (c.gameObject == GameObject.FindGameObjectWithTag("boss"))
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                print("what");
+                player.SendMessage("DisplayWin");
+            }
+
             if (c.gameObject == GameObject.FindGameObjectWithTag("Player"))
             {
                 //print("WTF2");

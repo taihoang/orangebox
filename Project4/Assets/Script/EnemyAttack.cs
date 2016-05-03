@@ -57,7 +57,7 @@ public class EnemyAttack : MonoBehaviour {
         shootTimer -= Time.deltaTime;
       //  print(shootTimer);
 
-        if (distance < 100)
+        if (distance < 50)
         {
            
             //move towards player
@@ -67,7 +67,7 @@ public class EnemyAttack : MonoBehaviour {
         }
         if (shootTimer <= 0)
         {
-            if (distance < 100)
+            if (distance < 50)
             {
                 shootTimer = 3;
                 ShootFireBall();

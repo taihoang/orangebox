@@ -12,8 +12,10 @@ public class PlayerStats : MonoBehaviour {
 
     public RawImage deathScreen;
     public RawImage splashScreen;
+    public RawImage winScreen;
     public AudioSource hurtSource;
     public AudioClip hurtSound;
+    public AudioClip dieSound;
     public Vector3 spawnPoint;
     public Vector3 rotation;
     // Use this for initialization
@@ -32,10 +34,21 @@ public class PlayerStats : MonoBehaviour {
 
     }
 
+    void DisplayWin()
+    {
+        winScreen.enabled = true;
+    }
     void SubtractHealth (int hp)
     {
-        hurtSource.PlayOneShot(hurtSound);
+        
         health -= hp;
+        if(health <0)
+        {
+            hurtSource.PlayOneShot(dieSound);
+        } else
+        {
+            hurtSource.PlayOneShot(hurtSound);
+        }
         if(health < 0)
         {
             health = 0;
